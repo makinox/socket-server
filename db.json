@@ -8,5 +8,10 @@
             "author": "Domi",
             "text": "mundo"
         }
+    ],
+    "users": [
+        {"id": 0, "name": "jesus"},
+        {"id": 1, "name": "andre"},
+        {"id": 2, "name": "galleta"}
     ]
 }

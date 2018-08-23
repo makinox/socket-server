@@ -3,6 +3,7 @@ const app = express()
 const socket = require('socket.io')
 const fs = require('fs')
 let {info} = require('./db.json')
+let {users} = require('./db.json')
 
 app.set('port', process.env.PORT || 3000)
 
@@ -17,10 +18,12 @@ io.on('connection', (socket) => {
     socket.on('push:message', (data) => {
         info.push(data)
         io.sockets.emit('push:message', info[info.length -1])
-        // let temp = JSON.stringify(info)
-        // fs.writeFileSync(__dirname +'/db.json', temp, (err) => {
-        //     if (err) throw err
-        //     console.log('Writed')
-        // })
+    })
+
+    socket.on('push:login', (data) => {
+        console.log(data)
+        users.push(data)
+        console.log(users.length)
+        io.sockets.emit('push:validate', users.length)
     })
 })
